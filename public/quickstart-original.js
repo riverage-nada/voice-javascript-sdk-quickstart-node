@@ -49,21 +49,7 @@
     log("Requesting Access Token...");
 
     try {
-      // const data = await $.getJSON("/token");
-      const data = await fetch("https://sample-service-7796.twil.io/token", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          console.log(res);
-          return res;
-        });
-
+      const data = await $.getJSON("/token");
       log("Got a token.");
       token = data.token;
       setClientNameUI(data.identity);
@@ -79,7 +65,6 @@
   function intitializeDevice() {
     logDiv.classList.remove("hide");
     log("Initializing device");
-    console.log(token);
     device = new Twilio.Device(token, {
       logLevel: 1,
       // Set Opus as our preferred codec. Opus generally performs better, requiring less bandwidth and
@@ -319,95 +304,3 @@
     });
   }
 });
-
-const ADJECTIVES = [
-  "Awesome",
-  "Bold",
-  "Creative",
-  "Dapper",
-  "Eccentric",
-  "Fiesty",
-  "Golden",
-  "Holy",
-  "Ignominious",
-  "Jolly",
-  "Kindly",
-  "Lucky",
-  "Mushy",
-  "Natural",
-  "Oaken",
-  "Precise",
-  "Quiet",
-  "Rowdy",
-  "Sunny",
-  "Tall",
-  "Unique",
-  "Vivid",
-  "Wonderful",
-  "Xtra",
-  "Yawning",
-  "Zesty",
-];
-
-const FIRST_NAMES = [
-  "Anna",
-  "Bobby",
-  "Cameron",
-  "Danny",
-  "Emmett",
-  "Frida",
-  "Gracie",
-  "Hannah",
-  "Isaac",
-  "Jenova",
-  "Kendra",
-  "Lando",
-  "Mufasa",
-  "Nate",
-  "Owen",
-  "Penny",
-  "Quincy",
-  "Roddy",
-  "Samantha",
-  "Tammy",
-  "Ulysses",
-  "Victoria",
-  "Wendy",
-  "Xander",
-  "Yolanda",
-  "Zelda",
-];
-
-const LAST_NAMES = [
-  "Anchorage",
-  "Berlin",
-  "Cucamonga",
-  "Davenport",
-  "Essex",
-  "Fresno",
-  "Gunsight",
-  "Hanover",
-  "Indianapolis",
-  "Jamestown",
-  "Kane",
-  "Liberty",
-  "Minneapolis",
-  "Nevis",
-  "Oakland",
-  "Portland",
-  "Quantico",
-  "Raleigh",
-  "SaintPaul",
-  "Tulsa",
-  "Utica",
-  "Vail",
-  "Warsaw",
-  "XiaoJin",
-  "Yale",
-  "Zimmerman",
-];
-
-const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-const nameGenerator = () =>
-  rand(ADJECTIVES) + rand(FIRST_NAMES) + rand(LAST_NAMES);

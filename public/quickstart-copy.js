@@ -79,7 +79,6 @@
   function intitializeDevice() {
     logDiv.classList.remove("hide");
     log("Initializing device");
-    console.log(token);
     device = new Twilio.Device(token, {
       logLevel: 1,
       // Set Opus as our preferred codec. Opus generally performs better, requiring less bandwidth and
